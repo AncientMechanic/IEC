@@ -6,7 +6,7 @@ namespace Domain.DTO
     public class User : DataEntity
     {
         [Required]
-        [Column("peeppoo")]
+        [Column("email")]
         public string? Email { get; set; }
 
         [Required]
