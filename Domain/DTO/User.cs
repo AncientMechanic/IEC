@@ -12,6 +12,6 @@ namespace Domain.DTO
         [Required]
         [Column("password")]
         public string? Password { get; set; }
-        public List<List>? Lists { get; set; } = new List<List>();
+        public List<Participant>? Participants { get; set; } = new List<Participant>();
     }
 }
