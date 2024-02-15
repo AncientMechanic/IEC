@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EF.Configurations
 {
-    internal class ListConfiguration : IEntityTypeConfiguration<User>
+    internal class ParticipantConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder
-                .ToTable("list");
+                .ToTable("participant");
         }
     }
 }

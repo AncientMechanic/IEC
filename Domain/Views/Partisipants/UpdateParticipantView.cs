@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Views.Lists
+namespace Domain.Views.Participants
 {
-    public class CreateListView
+    public class UpdateParticipantView
     {
+        public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public string Name { get; set; }
-
     }
 }

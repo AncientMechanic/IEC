@@ -1,8 +1,7 @@
 ﻿using Domain.DTO;
 using Infrastructure.IRepositories;
 using Microsoft.AspNetCore.Mvc;
-using DTO = Domain.DTO;
-using Domain.Views.Tasks;
+using Domain.Views.Participants;
 using Domain.Extensions;
 
 namespace Api.Controllers
@@ -10,12 +9,12 @@ namespace Api.Controllers
     [Produces("application/json")]
     [ApiController]
     [Route("[controller]")]
-    public sealed class TaskController : ControllerBase
+    public sealed class ParticipantController : ControllerBase
     {
-        private readonly ILogger<TaskController> _logger;
-        private readonly ITaskRepository _repository;
+        private readonly ILogger<ParticipantController> _logger;
+        private readonly IParticipantRepository _repository;
 
-        public TaskController(ITaskRepository repository, ILogger<TaskController> logger)
+        public ParticipantController(IParticipantRepository repository, ILogger<ParticipantController> logger)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -25,7 +24,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<TaskView>> GetById(Guid id)
+        public async Task<ActionResult<ParticipantView>> GetById(Guid id)
         {
             var entity = await _repository.GetByIdAsync(id);
 
@@ -36,17 +35,23 @@ namespace Api.Controllers
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<List<DTO.Task>>> GetAll()
+        public async Task<ActionResult<List<Participant>>> GetAll()
         {
             var entities = await _repository.GetAllAsync();
 
-            List<TaskView> views = new List<TaskView>();
+            List<ParticipantView> views = new List<ParticipantView>();
             foreach (var entity in entities)
             {
-                views.Add(new TaskView()
+                views.Add(new ParticipantView()
                 {
                     Id = entity.Id,
-                    ListId = entity.ListId,
+                    UserId = entity.UserId,
+                    FirstName = entity.FirstName,
+                    LastName = entity.LastName,
+                    Patronymic = entity.Patronymic,
+                    NameOfUniversity = entity.NameOfUniversity,
+                    Email = entity.Email,
+                    PhoneNumber = entity.PhoneNumber,
                 });
             }
             return Ok(views);
@@ -56,7 +61,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Guid>> Create(CreateTaskView view)
+        public async Task<ActionResult<Guid>> Create(CreateParticipantView view)
         {
             var model = view.ConvertToEntity();
             var id = await _repository.CreateAsync(model);
@@ -69,7 +74,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Update(UpdateTaskView view)
+        public async Task<ActionResult> Update(UpdateParticipantView view)
         {
             var model = view.ConvertToEntity();
             await _repository.UpdateAsync(model);

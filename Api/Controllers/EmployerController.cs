@@ -1,7 +1,8 @@
 ﻿using Domain.DTO;
 using Infrastructure.IRepositories;
 using Microsoft.AspNetCore.Mvc;
-using Domain.Views.Lists;
+using DTO = Domain.DTO;
+using Domain.Views.Employers;
 using Domain.Extensions;
 
 namespace Api.Controllers
@@ -9,12 +10,12 @@ namespace Api.Controllers
     [Produces("application/json")]
     [ApiController]
     [Route("[controller]")]
-    public sealed class ListController : ControllerBase
+    public sealed class EmployerController : ControllerBase
     {
-        private readonly ILogger<ListController> _logger;
-        private readonly IListRepository _repository;
+        private readonly ILogger<EmployerController> _logger;
+        private readonly IEmployerRepository _repository;
 
-        public ListController(IListRepository repository, ILogger<ListController> logger)
+        public EmployerController(IEmployerRepository repository, ILogger<EmployerController> logger)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -24,7 +25,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<ListView>> GetById(Guid id)
+        public async Task<ActionResult<EmployerView>> GetById(Guid id)
         {
             var entity = await _repository.GetByIdAsync(id);
 
@@ -35,18 +36,23 @@ namespace Api.Controllers
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<List<List>>> GetAll()
+        public async Task<ActionResult<List<DTO.Employer>>> GetAll()
         {
             var entities = await _repository.GetAllAsync();
 
-            List<ListView> views = new List<ListView>();
+            List<EmployerView> views = new List<EmployerView>();
             foreach (var entity in entities)
             {
-                views.Add(new ListView()
+                views.Add(new EmployerView()
                 {
                     Id = entity.Id,
-                    UserId = entity.UserId,
-                    Name = entity.Name,
+                    ParticipantId = entity.ParticipantId,
+                    CompanyName = entity.CompanyName,
+                    ContactFirstName = entity.ContactFirstName,
+                    ContactLastName = entity.ContactLastName,
+                    ContactEmail = entity.ContactEmail,
+                    ContactPhone = entity.ContactPhone,
+                    Position = entity.Position,
                 });
             }
             return Ok(views);
@@ -56,7 +62,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Guid>> Create(CreateListView view)
+        public async Task<ActionResult<Guid>> Create(CreateEmployerView view)
         {
             var model = view.ConvertToEntity();
             var id = await _repository.CreateAsync(model);
@@ -69,7 +75,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Update(UpdateListView view)
+        public async Task<ActionResult> Update(UpdateEmployerView view)
         {
             var model = view.ConvertToEntity();
             await _repository.UpdateAsync(model);

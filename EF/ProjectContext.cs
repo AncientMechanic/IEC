@@ -7,13 +7,13 @@ namespace EF
     public class ProjectContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Domain.DTO.Task> Tasks { get; set; }
-        public DbSet<List> Lists { get; set; }
+        public DbSet<Domain.DTO.Employer> Employers { get; set; }
+        public DbSet<Participant> Participants { get; set; }
 
         public ProjectContext(DbContextOptions options)
             : base(options)
         {
-            // Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

@@ -17,8 +17,8 @@ namespace Api.Extensions
 
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IListRepository, ListRepository>();
-            services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IParticipantRepository, ParticipantRepository>();
+            services.AddScoped<IEmployerRepository, EmployerRepository>();
 
             return services;
         }

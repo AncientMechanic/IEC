@@ -7,18 +7,18 @@ using Task = System.Threading.Tasks.Task;
 
 namespace EF.Repositories
 {
-    public sealed class ListRepository : IListRepository
+    public sealed class ParticipantRepository : IParticipantRepository
     {
         public readonly ProjectContext _context;
-        public readonly DbSet<List> _dbSet;
+        public readonly DbSet<Participant> _dbSet;
 
-        public ListRepository(ProjectContext context)
+        public ParticipantRepository(ProjectContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
-            _dbSet = _context.Set<List>();
+            _dbSet = _context.Set<Participant>();
         }
 
-        public async Task<Guid> CreateAsync(List entity)
+        public async Task<Guid> CreateAsync(Participant entity)
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -26,25 +26,25 @@ namespace EF.Repositories
             return entity.Id;
         }
 
-        public async Task<IQueryable<List>> GetAllAsync()
+        public async Task<IQueryable<Participant>> GetAllAsync()
         {
             var models = await System.Threading.Tasks.Task.FromResult(_dbSet.AsNoTracking());
 
             return models;
         }
 
-        public async Task<IQueryable<List>> GetAsync(Expression<Func<List, bool>> predicate)
+        public async Task<IQueryable<Participant>> GetAsync(Expression<Func<Participant, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<List> GetByIdAsync(Guid id)
+        public async Task<Participant> GetByIdAsync(Guid id)
         {
             var existEntity = await _dbSet.FindAsync(id);
 
             if (existEntity == null)
             {
-                throw new NotFoundException($"'{typeof(List)}' with id '{id}' not found.");
+                throw new NotFoundException($"'{typeof(Participant)}' with id '{id}' not found.");
             }
 
             return existEntity;
@@ -63,13 +63,13 @@ namespace EF.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(List entity)
+        public async Task UpdateAsync(Participant entity)
         {
             var existEntity = await _dbSet.FindAsync(entity.Id);
 
             if (existEntity == null)
             {
-                throw new NotFoundException($"'{typeof(Domain.DTO.Task)}' with id '{entity.Id}' not found.");
+                throw new NotFoundException($"'{typeof(Domain.DTO.Employer)}' with id '{entity.Id}' not found.");
             }
             _context.Entry(existEntity).State = EntityState.Detached;
 
