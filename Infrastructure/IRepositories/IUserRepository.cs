@@ -8,8 +8,8 @@ namespace Infrastructure.IRepositories
         Task<User> GetByIdAsync(Guid id);
         Task<Guid> CreateAsync(User entity);
         Task<IQueryable<User>> GetAllAsync();
-        System.Threading.Tasks.Task RemoveAsync(Guid id);
-        System.Threading.Tasks.Task UpdateAsync(User entity);
+        Task RemoveAsync(Guid id);
+        Task UpdateAsync(User entity);
         Task<IQueryable<User>> GetAsync(Expression<Func<User, bool>> predicate);
     }
 }

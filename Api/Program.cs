@@ -15,6 +15,7 @@ namespace Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGenWithOptions();
 
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddServicesConfiguration();
             builder.Services.AddDbContextConfiguration(builder.Configuration);
 
@@ -30,6 +31,7 @@ namespace Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
