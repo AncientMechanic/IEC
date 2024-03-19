@@ -10,6 +10,6 @@ namespace EF.Repositories
 
         public string SecurityKey => "mysupersecret_secretkey!123";
 
-        public TimeSpan ExpireTime => TimeSpan.FromMinutes(2);
+        public TimeSpan ExpireTime => TimeSpan.FromMinutes(200);
     }
 }

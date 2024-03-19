@@ -35,15 +35,22 @@ namespace Domain.DTO
         /// Адрес компании.
         /// </summary>
         [Required]
-        [Column("address")]
-        public string Address { get; set; } = "";
+        [Column("companyaddress")]
+        public string CompanyAddress { get; set; } = "";
 
         /// <summary>
-        /// Штат компании.
+        /// Страна компании.
         /// </summary>
         [Required]
-        [Column("state")]
-        public string State { get; set; } = "";
+        [Column("country")]
+        public string Country { get; set; } = "";
+
+        /// <summary>
+        /// Город Работы.
+        /// </summary>
+        [Required]
+        [Column("city")]
+        public string City { get; set; } = "";
 
         /// <summary>
         /// Номер телефона контактного лица.
@@ -65,10 +72,25 @@ namespace Domain.DTO
         [Required]
         [Column("position")]
         public string Position { get; set; } = "";
+
+        /// <summary>
+        /// Рабочая ставка участника.
+        /// </summary>
+        [Required]
+        [Column("wage")]
+        public string Wage { get; set; } = "";
+
+        /// <summary>
+        /// Статус оффера от работодателя(принят/отклонен).
+        /// </summary>
+        [Required]
+        [Column("jobofferstatus")]
+        public string JobOfferStatus { get; set; } = "";
+
         /// <summary>
         /// ListId - идентификатор списка, к которому относится задание
         /// </summary>
-        [ForeignKey("participantId")]
+        [ForeignKey("participantid")]
         public Guid ParticipantId { get; set; }
     }
 }

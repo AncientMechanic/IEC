@@ -4,6 +4,6 @@ namespace Infrastructure.IRepositories
 {
     public interface IAuthRepository
     {
-        Task<string> CreateToken(AuthView view);
+        Task<(string token, Guid userId)> CreateToken(AuthView view);
     }
 }

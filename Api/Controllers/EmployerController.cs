@@ -21,13 +21,13 @@ namespace Api.Controllers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{participantid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<EmployerView>> GetById(Guid id)
+        public async Task<ActionResult<EmployerView>> GetById(Guid participantid)
         {
-            var entity = await _repository.GetByIdAsync(id);
+            var entity = await _repository.GetByParticipantIdAsync(participantid);
 
             var view = entity.ConvertToView();
             return Ok(view);
@@ -53,6 +53,11 @@ namespace Api.Controllers
                     ContactEmail = entity.ContactEmail,
                     ContactPhone = entity.ContactPhone,
                     Position = entity.Position,
+                    CompanyAddress = entity.CompanyAddress,
+                    Country = entity.Country,
+                    City = entity.City,
+                    Wage = entity.Wage,
+                    JobOfferStatus = entity.JobOfferStatus,
                 });
             }
             return Ok(views);
@@ -70,17 +75,19 @@ namespace Api.Controllers
             return new ObjectResult(id) { StatusCode = StatusCodes.Status201Created };
         }
 
-        [HttpPut()]
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Update(UpdateEmployerView view)
+        public async Task<ActionResult> Update(UpdateEmployerView view, Guid id)
         {
-            var model = view.ConvertToEntity();
-            await _repository.UpdateAsync(model);
+            var entity = await _repository.GetByIdAsync(id);
+            
+            var model = view.ConvertToEntity(entity);
+            await _repository.UpdateAsync(model, id);
 
-            return NoContent();
+            return Ok(view);
         }
 
         [HttpDelete("{id}")]

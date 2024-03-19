@@ -12,6 +12,11 @@ namespace Domain.DTO
         [Required]
         [Column("password")]
         public string? Password { get; set; }
+
+        [Required]
+        [Column("isdeleted")]
+        public bool IsDeleted { get; set; } = false;
+
         public List<Participant>? Participants { get; set; } = new List<Participant>();
     }
 }

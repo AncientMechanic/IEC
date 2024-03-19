@@ -32,7 +32,7 @@ namespace EF.Repositories
 
         public async Task<IQueryable<Participant>> GetAllAsync()
         {
-            var models = await System.Threading.Tasks.Task.FromResult(_dbSet.AsNoTracking().Where(x => x.UserId == _userId));
+            var models = await System.Threading.Tasks.Task.FromResult(_dbSet.AsNoTracking());
 
             return models;
         }
@@ -44,7 +44,8 @@ namespace EF.Repositories
 
         public async Task<Participant> GetByIdAsync(Guid id)
         {
-            var existEntity = await _dbSet.FirstOrDefaultAsync(x => x.UserId == _userId && x.Id == id);
+            var existEntity = await _dbSet.FindAsync(id);
+
             if (existEntity == null)
             {
                 throw new NotFoundException($"'{typeof(Participant)}' with id '{id}' not found.");
@@ -55,7 +56,7 @@ namespace EF.Repositories
 
         public async Task RemoveAsync(Guid id)
         {
-            var existEntity = await _dbSet.FirstOrDefaultAsync(x => x.UserId == _userId && x.Id == id);
+            var existEntity = await _dbSet.FindAsync(id);
 
             if (existEntity == null)
             {
@@ -66,13 +67,13 @@ namespace EF.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Participant entity)
+        public async Task UpdateAsync(Participant entity, Guid id)
         {
-            var existEntity = await _dbSet.FirstOrDefaultAsync(x => x.UserId == _userId && x.Id == entity.Id);
+            var existEntity = await _dbSet.FindAsync(id);
 
             if (existEntity == null)
             {
-                throw new NotFoundException($"'{typeof(Domain.DTO.Employer)}' with id '{entity.Id}' not found.");
+                throw new NotFoundException($"'{typeof(Participant)}' with id '{id}' not found.");
             }
             _context.Entry(existEntity).State = EntityState.Detached;
 

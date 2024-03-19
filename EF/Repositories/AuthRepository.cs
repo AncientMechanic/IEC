@@ -20,7 +20,7 @@ namespace EF.Repositories
             _securityProvider = securityProvider ?? throw new ArgumentNullException(nameof(securityProvider));
         }
 
-        public async Task<string> CreateToken(AuthView model)
+        public async Task<(string token, Guid userId)> CreateToken(AuthView model)
         {
             if (string.IsNullOrEmpty(model.Email))
             {
@@ -29,7 +29,7 @@ namespace EF.Repositories
 
             var userExist = await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == model.Email);
 
-            if (userExist is null)
+            if (userExist is null || userExist.IsDeleted == true)
             {
                 throw new NotFoundException($"User '{model.Email}' not found.");
             }
@@ -49,7 +49,7 @@ namespace EF.Repositories
                     claims: claims,
                     expires: DateTime.UtcNow.Add(_securityProvider.ExpireTime),
                     signingCredentials: new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256));
-            return new JwtSecurityTokenHandler().WriteToken(jwt);
+            return (new JwtSecurityTokenHandler().WriteToken(jwt), userExist.Id);
         }
     }
 }

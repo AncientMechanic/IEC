@@ -10,11 +10,13 @@ namespace Infrastructure.IRepositories
 {
     public interface IParticipantRepository
     {
+
         Task<Participant> GetByIdAsync(Guid id);
         Task<Guid> CreateAsync(Participant entity);
         Task<IQueryable<Participant>> GetAllAsync();
         Task RemoveAsync(Guid id);
-        Task UpdateAsync(Participant entity);
+        Task UpdateAsync(Participant entity, Guid id);
         Task<IQueryable<Participant>> GetAsync(Expression<Func<Participant, bool>> predicate);
+
     }
 }

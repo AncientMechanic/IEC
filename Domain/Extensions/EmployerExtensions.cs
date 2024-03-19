@@ -16,6 +16,11 @@ namespace Domain.Extensions
                 ContactEmail = entity.ContactEmail,
                 ContactPhone = entity.ContactPhone,
                 Position = entity.Position,
+                CompanyAddress = entity.CompanyAddress,
+                Country = entity.Country,
+                City = entity.City,
+                Wage = entity.Wage,
+                JobOfferStatus = entity.JobOfferStatus,
             };
         }
         public static DTO.Employer ConvertToEntity (this CreateEmployerView view)
@@ -28,15 +33,31 @@ namespace Domain.Extensions
                 ContactLastName = view.ContactLastName,
                 ContactEmail = view.ContactEmail,
                 ContactPhone = view.ContactPhone,
+                Country = view.Country,
+                City = view.City,
+                CompanyAddress = view.CompanyAddress,
                 Position = view.Position,
+                Wage = view.Wage,
+                JobOfferStatus = view.JobOfferStatus,
             };
         }
-        public static DTO.Employer ConvertToEntity(this UpdateEmployerView view)
+        public static DTO.Employer ConvertToEntity(this UpdateEmployerView view, Employer entity)
         {
             return new DTO.Employer()
             {
-                ParticipantId = view.ParticipantId,
-                Id = view.Id,
+                ParticipantId = entity.ParticipantId,
+                Id = entity.Id,
+                CompanyName = view.CompanyName,
+                ContactFirstName = view.ContactFirstName,
+                ContactLastName = view.ContactLastName,
+                ContactEmail = view.ContactEmail,
+                ContactPhone = view.ContactPhone,
+                Country = view.Country,
+                City = view.City,
+                CompanyAddress = view.CompanyAddress,
+                Position = view.Position,
+                Wage = view.Wage,
+                JobOfferStatus = view.JobOfferStatus,
             };
         }
     }
