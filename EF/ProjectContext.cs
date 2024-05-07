@@ -7,7 +7,7 @@ namespace EF
     public class ProjectContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Domain.DTO.Employer> Employers { get; set; }
+        public DbSet<Employer> Employers { get; set; }
         public DbSet<Participant> Participants { get; set; }
 
         public ProjectContext(DbContextOptions options)
@@ -20,7 +20,6 @@ namespace EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-
         }
 
         public override int SaveChanges()

@@ -33,10 +33,30 @@ namespace Domain.DTO
         public string Patronymic { get; set; } = "";
 
         /// <summary>
+        /// Сезон работы центра
+        /// </summary>
+        [Column("season")]
+        public int Season { get; set; }
+
+        /// <summary>
         /// Дата рождения участника.
         /// </summary>
         [Column("dateofbirth")]
         public DateTime DateOfBirth { get; set; }
+
+        /// <summary>
+        /// Отчество участника.
+        /// </summary>
+        [Required]
+        [Column("address")]
+        public string Address { get; set; } = "";
+
+        /// <summary>
+        /// Отчество участника.
+        /// </summary>
+        [Required]
+        [Column("passport")]
+        public string Passport { get; set; } = "";
 
         /// <summary>
         /// Название университета, в котором учится участник.
@@ -67,6 +87,27 @@ namespace Domain.DTO
         public string Email { get; set; } = "";
 
         /// <summary>
+        /// Full Service/ Self-Arranged
+        /// </summary>
+        [Required]
+        [Column("serviceplan")]
+        public string ServicePlan { get; set; } = "";
+
+        /// <summary>
+        /// Picked Program
+        /// </summary>
+        [Required]
+        [Column("program")]
+        public string Program { get; set; } = "";
+        
+        /// <summary>
+        /// Статус предоплаты участника.
+        /// </summary>
+        [Required]
+        [Column("prepayment")]
+        public bool PrePayment { get; set; }
+
+        /// <summary>
         /// Статус оплаты взносов участника.
         /// </summary>
         [Required]
@@ -94,6 +135,12 @@ namespace Domain.DTO
         [Column("returndate")]
         public DateTime ReturnDate { get; set; }
 
+        /// <summary>
+        /// Наличие работодателя.
+        /// </summary>
+        [Required]
+        [Column("hasemployer")]
+        public bool HasEmployer { get; set; } = false;
 
         /// <summary>
         /// UserId - идентификатор работника входящего в систему
@@ -103,7 +150,7 @@ namespace Domain.DTO
         /// <summary>
         /// Работодатель принимающий участника
         /// </summary>
-        public Employer? Employer { get; set; }
+        public List<Employer>? Employers { get; set; } = new List<Employer>();
         public User? User { get; set; }
     }
 }

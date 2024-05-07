@@ -3,7 +3,6 @@ using Infrastructure.Exceptions;
 using Infrastructure.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using Task = System.Threading.Tasks.Task;
 
 namespace EF.Repositories
 {

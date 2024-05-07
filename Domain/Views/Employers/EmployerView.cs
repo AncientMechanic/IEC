@@ -11,10 +11,16 @@ namespace Domain.Views.Employers
         public Guid Id { get; set; }
         public Guid ParticipantId { get; set; }
         public string CompanyName { get; set; } = null!;
-        public string ContactFirstName { get; set;} = null!;
+        public string ContactFirstName { get; set; } = null!;
         public string ContactLastName { get; set; } = null!;
         public string ContactEmail { get; set; } = null!;
         public string ContactPhone { get; set; } = null!;
+        public string Country { get; set; } = null!;
+        public string City { get; set; } = null!;
+        public string CompanyAddress { get; set; } = null!;
         public string Position { get; set; } = null!;
+        public string Wage { get; set; } = null!;
+        public string JobOfferStatus { get; set; } = null!;
+
     }
 }

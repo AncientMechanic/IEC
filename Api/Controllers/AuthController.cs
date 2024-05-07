@@ -24,11 +24,11 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<string>> CreateToken(AuthView model)
+        public async Task<ActionResult<(string token, Guid userId)>> CreateToken(AuthView model)
         {
-            var token = await _repository.CreateToken(model);
+            var (token, userId) = await _repository.CreateToken(model);
 
-            return new ObjectResult(token) { StatusCode = StatusCodes.Status200OK };
+            return new ObjectResult(new { token, userId }) { StatusCode = StatusCodes.Status200OK };
         }
     }
 }

@@ -17,10 +17,23 @@ namespace Domain.Extensions
                 UserId = entity.UserId,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
+                DateOfBirth = entity.DateOfBirth,
                 Patronymic = entity.Patronymic,
+                Season = entity.Season,
+                Address = entity.Address,
+                Passport = entity.Passport,
                 NameOfUniversity = entity.NameOfUniversity,
+                YearOfStudy = entity.YearOfStudy,
                 Email = entity.Email,
                 PhoneNumber = entity.PhoneNumber,
+                Program = entity.Program,
+                ServicePlan = entity.ServicePlan,
+                HasEmployer = entity.HasEmployer,
+                PrePayment = entity.PrePayment,
+                PaymentComplete = entity.PaymentComplete,
+                VisaApproved = entity.VisaApproved,
+                DepartureDate = entity.DepartureDate,
+                ReturnDate = entity.ReturnDate,
 
             };
         }
@@ -32,17 +45,43 @@ namespace Domain.Extensions
                 FirstName = view.FirstName,
                 LastName = view.LastName,
                 Patronymic = view.Patronymic,
+                DateOfBirth = view.DateOfBirth,
+                Season = view.Season,
+                Address = view.Address,
+                Passport = view.Passport,
                 NameOfUniversity = view.NameOfUniversity,
+                YearOfStudy = view.YearOfStudy,
                 Email = view.Email,
                 PhoneNumber = view.PhoneNumber,
+                Program = view.Program,
+               
             };
         }
-        public static Participant ConvertToEntity(this UpdateParticipantView view)
+        public static Participant ConvertToEntity(this UpdateParticipantView view, Participant entity)
         {
             return new Participant()
             {
-                UserId = view.UserId,
-                Id = view.Id,
+                Id = entity.Id,
+                UserId = entity.UserId,
+                FirstName = view.FirstName,
+                LastName = view.LastName,
+                Patronymic = view.Patronymic,
+                DateOfBirth = view.DateOfBirth,
+                Season = view.Season,
+                Address = view.Address,
+                Passport = view.Passport,
+                NameOfUniversity = view.NameOfUniversity,
+                YearOfStudy = view.YearOfStudy,
+                Email = view.Email,
+                PhoneNumber = view.PhoneNumber,
+                Program = view.Program,
+                ServicePlan = view.ServicePlan,
+                HasEmployer = view.HasEmployer,
+                PrePayment = view.PrePayment,
+                PaymentComplete = view.PaymentComplete,
+                VisaApproved = view.VisaApproved,
+                DepartureDate = view.DepartureDate,
+                ReturnDate = view.ReturnDate,
             };
         }
     }

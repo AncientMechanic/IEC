@@ -27,10 +27,11 @@ namespace Api.Controllers
         public async Task<ActionResult<UserView>> GetById(Guid id)
         {
             var entity = await _repository.GetByIdAsync(id);
+
             var view = entity.ConvertToView();
+
             return Ok(view);
         }
-
 
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -60,12 +61,13 @@ namespace Api.Controllers
         public async Task<ActionResult<Guid>> Create(CreateUserView view)
         {
             var model = view.ConvertToEntity();
+
             var id = await _repository.CreateAsync(model);
+
             return new ObjectResult(id) { StatusCode = StatusCodes.Status201Created };
         }
 
-
-            [HttpPut()]
+        [HttpPut()]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -73,9 +75,10 @@ namespace Api.Controllers
         public async Task<ActionResult> Update(UpdateUserView view)
         {
             var model = view.ConvertToEntity();
-            await _repository.UpdateAsync(model);
-            return NoContent();
 
+            await _repository.UpdateAsync(model);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
