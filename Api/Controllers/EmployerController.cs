@@ -58,6 +58,7 @@ namespace Api.Controllers
                     City = entity.City,
                     Wage = entity.Wage,
                     JobOfferStatus = entity.JobOfferStatus,
+                    HousingProvided = entity.HousingProvided,
                 });
             }
             return Ok(views);

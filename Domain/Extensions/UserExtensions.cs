@@ -11,6 +11,9 @@ namespace Domain.Extensions
             {
                 Id = entity.Id,
                 Email = entity.Email,
+                Name = entity.Name,
+                PhoneNumber = entity.PhoneNumber,
+                Photo = entity.Photo,
                 CreatedOn = entity.CreatedOn,
                 ModifiedOn = entity.ModifiedOn
             };
@@ -21,12 +24,16 @@ namespace Domain.Extensions
             {
                 Email = view.Email,
                 Password = view.Password,
+                Name = view.Name,
+                PhoneNumber = view.PhoneNumber,
+                Photo = view.Photo,
             };
         }
         public static User ConvertToEntity(this UpdateUserView view)
         {
             return new User()
             {
+                Photo = view.Photo,
             };
         }
     }

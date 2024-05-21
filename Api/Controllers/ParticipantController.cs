@@ -65,6 +65,13 @@ namespace Api.Controllers
                     Passport = entity.Passport,
                     Email = entity.Email,
                     PhoneNumber = entity.PhoneNumber,
+                    Photo = entity.Photo,
+                    FormOfStudy = entity.FormOfStudy,
+                    VisaNumber = entity.VisaNumber,
+                    VisaIssued = entity.VisaIssued,
+                    VisaExpires = entity.VisaExpires,
+                    PassportExpires = entity.PassportExpires,
+                    ContractSigned = entity.ContractSigned,
                 });
             }
             return Ok(views);

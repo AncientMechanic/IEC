@@ -12,5 +12,9 @@ namespace Domain.Views.Users
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         public string Email { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
+        public byte[]? Photo { get; set; }
+
     }
 }

@@ -45,6 +45,24 @@ namespace Domain.DTO
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>
+        /// Дата рождения участника.
+        /// </summary>
+        [Column("visaissued")]
+        public DateTime VisaIssued { get; set; }
+
+        /// <summary>
+        /// Дата рождения участника.
+        /// </summary>
+        [Column("visaexpires")]
+        public DateTime VisaExpires { get; set; }
+
+        /// <summary>
+        /// Дата рождения участника.
+        /// </summary>
+        [Column("passportexpires")]
+        public DateTime PassportExpires { get; set; }
+
+        /// <summary>
         /// Отчество участника.
         /// </summary>
         [Required]
@@ -59,6 +77,13 @@ namespace Domain.DTO
         public string Passport { get; set; } = "";
 
         /// <summary>
+        /// Отчество участника.
+        /// </summary>
+        [Required]
+        [Column("visanumber")]
+        public string VisaNumber { get; set; } = "";
+
+        /// <summary>
         /// Название университета, в котором учится участник.
         /// </summary>
         [Required]
@@ -71,6 +96,13 @@ namespace Domain.DTO
         [Required]
         [Column("yearofstudy")]
         public int YearOfStudy { get; set; }
+
+        /// <summary>
+        /// Название университета, в котором учится участник.
+        /// </summary>
+        [Required]
+        [Column("formofstudy")]
+        public string FormOfStudy { get; set; } = "";
 
         /// <summary>
         /// Номер телефона участника.
@@ -141,6 +173,16 @@ namespace Domain.DTO
         [Required]
         [Column("hasemployer")]
         public bool HasEmployer { get; set; } = false;
+
+        [Required]
+        [Column("contractsigned")]
+        public bool ContractSigned { get; set; } = false;
+
+        /// <summary>
+        /// Фотография участника.
+        /// </summary>
+        [Column("photo")]
+        public byte[]? Photo { get; set; }
 
         /// <summary>
         /// UserId - идентификатор работника входящего в систему

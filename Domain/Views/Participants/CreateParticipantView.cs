@@ -26,7 +26,14 @@ namespace Domain.Views.Participants
         public bool PrePayment { get; set; } = false;
         public bool PaymentComplete { get; set; } = false;
         public DateTime DateOfBirth { get; set; }
-
-
+        public DateTime DepartureDate { get; set; }
+        public DateTime ReturnDate { get; set; }
+        public byte[]? Photo { get; set; }
+        public string FormOfStudy { get; set; } = null!;
+        public bool ContractSigned { get; set; } = false;
+        public string VisaNumber { get; set; } = null!;
+        public DateTime VisaIssued { get; set; }
+        public DateTime VisaExpires { get; set; }
+        public DateTime PassportExpires { get; set; }
     }
 }

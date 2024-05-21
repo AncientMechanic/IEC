@@ -14,6 +14,20 @@ namespace Domain.DTO
         public string? Password { get; set; }
 
         [Required]
+        [Column("name")]
+        public string? Name { get; set; }
+
+        [Required]
+        [Column("phonenumber")]
+        public string? PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Фотография участника.
+        /// </summary>
+        [Column("photo")]
+        public byte[]? Photo { get; set; }
+
+        [Required]
         [Column("isdeleted")]
         public bool IsDeleted { get; set; } = false;
 

@@ -19,5 +19,6 @@ namespace Domain.Views.Employers
         public string Position { get; set; } = null!;
         public string Wage { get; set; } = null!;
         public string JobOfferStatus { get; set; } = null!;
+        public bool HousingProvided { get; set; } = false;
     }
 }

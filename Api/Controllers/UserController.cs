@@ -47,6 +47,9 @@ namespace Api.Controllers
                 {
                     Id = entity.Id,
                     Email = entity.Email,
+                    Name = entity.Name,
+                    PhoneNumber = entity.PhoneNumber,
+                    Photo = entity.Photo,
                     CreatedOn = entity.CreatedOn,
                     ModifiedOn = entity.ModifiedOn
                 });

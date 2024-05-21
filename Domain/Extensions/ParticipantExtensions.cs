@@ -34,7 +34,13 @@ namespace Domain.Extensions
                 VisaApproved = entity.VisaApproved,
                 DepartureDate = entity.DepartureDate,
                 ReturnDate = entity.ReturnDate,
-
+                Photo = entity.Photo,
+                FormOfStudy = entity.FormOfStudy,
+                VisaNumber = entity.VisaNumber,
+                VisaIssued = entity.VisaIssued,
+                VisaExpires = entity.VisaExpires,
+                PassportExpires = entity.PassportExpires,
+                ContractSigned = entity.ContractSigned,
             };
         }
         public static Participant ConvertToEntity(this CreateParticipantView view)
@@ -44,8 +50,8 @@ namespace Domain.Extensions
                 UserId = view.UserId,
                 FirstName = view.FirstName,
                 LastName = view.LastName,
-                Patronymic = view.Patronymic,
                 DateOfBirth = view.DateOfBirth,
+                Patronymic = view.Patronymic,
                 Season = view.Season,
                 Address = view.Address,
                 Passport = view.Passport,
@@ -54,7 +60,20 @@ namespace Domain.Extensions
                 Email = view.Email,
                 PhoneNumber = view.PhoneNumber,
                 Program = view.Program,
-               
+                ServicePlan = view.ServicePlan,
+                HasEmployer = view.HasEmployer,
+                PrePayment = view.PrePayment,
+                PaymentComplete = view.PaymentComplete,
+                VisaApproved = view.VisaApproved,
+                DepartureDate = view.DepartureDate,
+                ReturnDate = view.ReturnDate,
+                Photo = view.Photo,
+                FormOfStudy = view.FormOfStudy,
+                VisaNumber = view.VisaNumber,
+                VisaIssued = view.VisaIssued,
+                VisaExpires = view.VisaExpires,
+                PassportExpires = view.PassportExpires,
+                ContractSigned = view.ContractSigned,
             };
         }
         public static Participant ConvertToEntity(this UpdateParticipantView view, Participant entity)
@@ -82,6 +101,13 @@ namespace Domain.Extensions
                 VisaApproved = view.VisaApproved,
                 DepartureDate = view.DepartureDate,
                 ReturnDate = view.ReturnDate,
+                Photo = view.Photo,
+                FormOfStudy = view.FormOfStudy,
+                VisaNumber = view.VisaNumber,
+                VisaIssued = view.VisaIssued,
+                VisaExpires = view.VisaExpires,
+                PassportExpires = view.PassportExpires,
+                ContractSigned = view.ContractSigned,
             };
         }
     }

@@ -39,6 +39,13 @@ namespace Domain.DTO
         public string CompanyAddress { get; set; } = "";
 
         /// <summary>
+        /// Статус предоплаты участника.
+        /// </summary>
+        [Required]
+        [Column("housingprovided")]
+        public bool HousingProvided { get; set; } = false;
+
+        /// <summary>
         /// Страна компании.
         /// </summary>
         [Required]

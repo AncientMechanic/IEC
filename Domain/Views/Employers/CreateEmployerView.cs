@@ -8,6 +8,7 @@ namespace Domain.Views.Employers
 {
     public class CreateEmployerView
     {
+        public Guid Id { get; set; }
         public Guid ParticipantId { get; set; }
         public string CompanyName { get; set; } = null!;
         public string ContactFirstName { get; set; } = null!;
@@ -20,7 +21,7 @@ namespace Domain.Views.Employers
         public string Position { get; set; } = null!;
         public string Wage { get; set; } = null!;
         public string JobOfferStatus { get; set; } = null!;
-
+        public bool HousingProvided { get; set; } = false;
 
     }
 }

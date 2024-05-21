@@ -21,6 +21,7 @@ namespace Domain.Extensions
                 City = entity.City,
                 Wage = entity.Wage,
                 JobOfferStatus = entity.JobOfferStatus,
+                HousingProvided = entity.HousingProvided,
             };
         }
         public static DTO.Employer ConvertToEntity (this CreateEmployerView view)
@@ -39,6 +40,7 @@ namespace Domain.Extensions
                 Position = view.Position,
                 Wage = view.Wage,
                 JobOfferStatus = view.JobOfferStatus,
+                HousingProvided = view.HousingProvided,
             };
         }
         public static DTO.Employer ConvertToEntity(this UpdateEmployerView view, Employer entity)
@@ -58,6 +60,7 @@ namespace Domain.Extensions
                 Position = view.Position,
                 Wage = view.Wage,
                 JobOfferStatus = view.JobOfferStatus,
+                HousingProvided = view.HousingProvided,
             };
         }
     }
